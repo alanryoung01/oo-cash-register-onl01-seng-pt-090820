@@ -1,45 +1,29 @@
 require 'pry'
 class CashRegister
 
-  attr_accessor :total, :discount, :last_trans, :items
+  attr_accessor :total, :discount, :items, :last_trans
 
-  def initialize(discount = 0)
-    @total = 0
-    @discount = discount
-    @items = []
+  def initialize(discount = nil)
+    self.total = 0
+    self.discount = discount
+    self.items = []
   end
 
-
-  def add_item(name,price,items = 1)
-    if items>1
-      i=0
-      while i<items
-        @items << name
-        i+=1
-      end
-    else
-      @items << name
-    end
-    @total += price*items
-    @last_trans = @total
-    @total
+  def add_item(title, price, quantity = 1)
+    self.total += price * quantity
+    quantity.times { self.items << title }
+    self.last_trans = [title, price, quantity]
   end
 
-  def apply_discount()
-    if @discount > 0
-      @discount = @discount/100.to_f
-      @total = @total - (@total * (@discount))
-      "After the discount, the total comes to $#{@total.to_i}."
-    else
-      "There is no discount to apply."
+  def apply_discount
+    self.total == 0 ? "There is no discount to apply." : "After the discount, the total comes to $#{self.total = self.total * 8 / 10 }."
+  end
+
+  def void_last_transaction
+    self.total -= self.last_trans[1] * self.last_trans[2]
+    self.last_trans[2].times do
+      self.items.delete_at(self.items.index(self.last_trans[0]) || self.items.count)
     end
   end
 
-
-  def void_last_transaction()
-    @total -= @last_trans[1] * @last_trans[2]
-    @last_trans[2].times do
-      @items.delete_at(@items.index(@last_trans[0]) || @items.count)
-    end
-  end
 end
