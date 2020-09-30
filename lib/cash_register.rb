@@ -9,9 +9,9 @@ class CashRegister
     self.items = []
   end
 
-  def add_item(title, price, items = 1)
-    self.total += price * items
-    items.times { self.items << title }
+  def add_item(title, price, quantity = 1)
+    self.total += price * quantity
+    quantity.times { self.items << title }
     self.last_trans = [title, price, quantity]
   end
 
