@@ -1,7 +1,7 @@
 require 'pry'
 class CashRegister
 
-  attr_accessor :total, :discount, :last_transaction_amount, :items
+  attr_accessor :total, :discount, :last_trans, :items
 
   def initialize(discount = 0)
     @total = 0
@@ -10,18 +10,18 @@ class CashRegister
   end
 
 
-  def add_item(title,price,quantity = 1)
-    if quantity>1
+  def add_item(name,price,items = 1)
+    if items>1
       i=0
-      while i<quantity
-        @items << title
+      while i<items
+        @items << name
         i+=1
       end
     else
-      @items << title
+      @items << name
     end
-    @total += price*quantity
-    @last_transaction_amount = @total
+    @total += price*items
+    @last_trans = @total
     @total
   end
 
@@ -37,7 +37,7 @@ class CashRegister
 
 
   def void_last_transaction()
-    @total -= @last_transaction_amount
+    @total -= @last_trans
   end
 
 end
