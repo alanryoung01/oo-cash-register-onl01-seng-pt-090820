@@ -41,8 +41,4 @@ class CashRegister
     @last_trans[2].times do
       @items.delete_at(@items.index(@last_trans[0]) || @items.count)
     end
-  end
-end
-
-
 end
