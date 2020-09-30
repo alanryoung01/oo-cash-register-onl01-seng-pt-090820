@@ -6,7 +6,6 @@ class CashRegister
     @total = 0
     @discount = discount
     @items = []
-    @transactions = []
   end
 
 
@@ -23,7 +22,6 @@ class CashRegister
     @total += price*items
     @last_trans = @total
     @total
-    @transactions << price
   end
 
   def apply_discount()
@@ -38,7 +36,7 @@ class CashRegister
 
 
   def void_last_transaction()
-    self.total = @total - @transactons.pop
+    @total = @total - @last_trans
   end
 
 end
