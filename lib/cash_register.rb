@@ -36,7 +36,7 @@ class CashRegister
 
 
   def void_last_transaction()
-    @total = @total - @last_trans
+    @total == @total - @last_trans
   end
 
 end
