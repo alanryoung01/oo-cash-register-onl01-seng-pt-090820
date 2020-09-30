@@ -37,11 +37,10 @@ class CashRegister
 
 
   def void_last_transaction()
-    if @items = 0
-      @total = 0
-    else
-    @total -= @last_trans
-    @total = 0.99
+    @total -= @last_trans[1] * @last_trans[2]
+    @last_trans[2].times do
+      @items.delete_at(@items.index(@last_trans[0]) || @items.count)
+    end
   end
 end
 
